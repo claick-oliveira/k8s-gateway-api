@@ -1,0 +1,24 @@
+# This Deployment manifest defines:
+# - single-replica deployment of the container image, with label "app: roemer-svc"
+# - Pod exposes port 8080
+# - specify PORT environment variable to the container process
+# Syntax reference https://kubernetes.io/docs/concepts/configuration/overview/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-svc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: example-svc
+  template:
+    metadata:
+      labels:
+        app: example-svc
+    spec:
+      containers:
+      - name: server
+        image: example-svc
+        ports:
+        - containerPort: 5000
