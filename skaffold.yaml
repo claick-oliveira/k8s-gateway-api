@@ -33,13 +33,14 @@ profiles:
       - kubernetes/deployment.yaml
       - kubernetes/service.yaml
 - name: staging-profile
+  activation:
+    - kubeContext: staging
   build:
     artifacts:
     - image: example-svc
       docker:
         dockerfile: Dockerfile
   deploy:
-    kubeContext: staging
     kubectl:
       manifests:
       - kubernetes/deployment.yaml
