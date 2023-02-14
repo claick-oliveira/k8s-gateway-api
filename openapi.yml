@@ -1,0 +1,23 @@
+openapi: '3.0.2'
+info:
+  title: Roemer Service
+  version: '0.1'
+servers:
+  - url: http://127.0.0.1:5000
+
+paths:
+  /health:
+    get:
+      summary: 'Check the API status.'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: The status.
+                    example: 'up'
