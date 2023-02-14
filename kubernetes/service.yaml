@@ -6,11 +6,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: roemer-svc
+  name: example-svc
 spec:
-  type: LoadBalancer
   selector:
-    app: roemer-svc
+    app: example-svc
   ports:
   - name: http
     port: 5000
