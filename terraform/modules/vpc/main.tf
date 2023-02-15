@@ -1,5 +1,4 @@
 // vpc module
-
 resource "google_compute_network" "vpc" {
   name                    = var.vpc_name
   routing_mode            = "REGIONAL"
