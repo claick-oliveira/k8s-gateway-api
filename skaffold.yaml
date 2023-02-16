@@ -45,3 +45,5 @@ profiles:
       manifests:
       - kubernetes/deployment.yaml
       - kubernetes/service.yaml
+      - kubernetes/http-route.yaml
+      - kubernetes/external-lb-policy.yaml
