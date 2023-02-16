@@ -12,6 +12,13 @@ gcloud compute networks subnets create us-central1 \
     --region=us-central1 \
     --secondary-range=pods-range=172.16.0.0/16,service-range=172.17.0.0/16
 
+gcloud compute networks subnets create us-central1-proxy \
+    --purpose REGIONAL_MANAGED_PROXY \
+    --role ACTIVE \
+    --region us-central1 \
+    --network gateway-api \
+    --range 10.100.0.0/20
+
 gcloud container clusters create gateway-api \
     --gateway-api=standard \
     --zone us-central1-a \
@@ -26,41 +33,23 @@ gcloud container clusters create gateway-api \
     --cluster-secondary-range-name=pods-range \
     --services-secondary-range-name=service-range
 
-gcloud iam service-accounts create k8s-gateway-api \
-    --display-name="k8s-gateway-api"
-
-gcloud projects add-iam-policy-binding <PROJECT_ID> \
-    --member "serviceAccount:k8s-gateway-api@<PROJECT_ID>.iam.gserviceaccount.com" \
-    --role roles/container.nodeServiceAccount
-
-gcloud container clusters get-credentials gateway-api --zone us-central1-a --project <PROJECT_ID>
-kubectx staging=gke_<PROJECT_ID>_us-central1_gateway-api
-
-kubectl get gatewayclass
-
-gcloud compute networks subnets create us-central1-proxy \
-    --purpose REGIONAL_MANAGED_PROXY \
-    --role ACTIVE \
-    --region us-central1 \
+gcloud container clusters create-auto gateway-api \
+    --region us-central1-a \
+    --no-enable-master-authorized-networks \
     --network gateway-api \
-    --range 10.100.0.0/20
+    --subnetwork us-central1 \
+    --cluster-secondary-range-name=pods-range \
+    --services-secondary-range-name=service-range
+
+gcloud container clusters get-credentials gke-gateway-api --region us-central1 --project <PROJECT_ID>
+kubectx staging=gke_<PROJECT_ID>_us-central1_gateway-api
 
 gcloud compute networks subnets describe us-central1-proxy \
     --region us-central1
 
 https://cloud.google.com/kubernetes-engine/docs/concepts/gateway-api#gatewayclass
 kubectl apply -f ./kubernetes/gateway.yaml
+kubectl get gatewayclass
 kubectl describe gateways.gateway.networking.k8s.io global-external-http
 
-gsutil iam ch \
-  serviceAccount:k8s-gateway-api@<PROJECT_ID>.iam.gserviceaccount.com:objectViewer \
-  gs://staging.<PROJECT_ID>.appspot.com
-
-gsutil iam ch \
-  serviceAccount:<PROJECT>-compute@developer.gserviceaccount.com:objectViewer \
-  gs://artifacts.<PROJECT_ID>.appspot.com
-
-skaffold run --default-repo gcr.io/<PROJECT_ID>/gateway-api
-
-kubectl apply -f ./kubernetes/http-route.yaml
-kubectl apply -f ./kubernetes/external-lb-policy.yaml
+skaffold run --default-repo us-central1-docker.pkg.dev/<PROJECT_ID>/example-svc
