@@ -36,7 +36,15 @@ These instructions will get you a copy of the project up and running on your loc
 
 To deloy this project you will need a Google Cloud account, [create here](https://cloud.google.com/).
 
-"This project will generate costs,take care."
+#### Costs
+
+This tutorial uses the following billable components of Google Cloud:
+
+- [GKE](https://cloud.google.com/kubernetes-engine/pricing)
+
+To generate a cost estimate based on your projected usage, use the [pricing calculator](https://cloud.google.com/products/calculator).
+
+When you finish this tutorial, you can avoid continued billing by deleting the resources you created. For more information, see [Clean up](https://github.com/claick-oliveira/k8s-gateway-api#clean).
 
 ### Deploying
 
