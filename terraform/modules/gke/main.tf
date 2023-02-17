@@ -37,7 +37,7 @@ module "gke" {
   gateway_api_channel        = var.gateway_api_channel
   create_service_account     = false
   release_channel            = "REGULAR"
-
+  remove_default_node_pool   = true
 
   node_pools = [
     {
