@@ -111,11 +111,7 @@ To run the server you need to execute, but you need to be in the root folder:
 skaffold run --default-repo us-central1-docker.pkg.dev/<PROJECT_ID>/example-svc
 ```
 
-After this you can test the roemer service:
-
-```bash
-curl -X POST http://127.0.0.1:5000/roemer/planets/distance -H 'Content-Type: application/json' -d '{"data":["Earth"]}'
-```
+#TODO: ## Add how to request the applicaton
 
 ### Application
 
