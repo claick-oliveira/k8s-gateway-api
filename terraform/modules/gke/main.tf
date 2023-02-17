@@ -4,23 +4,23 @@ data "google_client_config" "default" {}
 resource "google_service_account" "gke-sa" {
   account_id   = "tf-gke-sa"
   display_name = "Service Account For GKE ${var.cluster_name}"
-  project      = var.gcp_project_name
+  project      = var.gcp_project_id
 }
 resource "google_project_iam_member" "artifactregistry-role" {
   role    = "roles/artifactregistry.reader"
   member  = "serviceAccount:${google_service_account.gke-sa.email}"
-  project = var.gcp_project_name
+  project = var.gcp_project_id
 }
 
 resource "google_project_iam_member" "node-service-account-role" {
   role    = "roles/container.nodeServiceAccount"
   member  = "serviceAccount:${google_service_account.gke-sa.email}"
-  project = var.gcp_project_name
+  project = var.gcp_project_id
 }
 
 module "gke" {
   source                     = "terraform-google-modules/kubernetes-engine/google"
-  project_id                 = var.gcp_project_name
+  project_id                 = var.gcp_project_id
   name                       = var.cluster_name
   region                     = var.gcp_region
   regional                   = false
