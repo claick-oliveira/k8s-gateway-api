@@ -10,7 +10,6 @@ updates:
     schedule:
       interval: "weekly"
   - package-ecosystem: "pip"
-    - "terraform"
     directory: "/" 
     schedule:
       interval: "weekly"
