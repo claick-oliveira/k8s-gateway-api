@@ -117,7 +117,7 @@ Now you need to create the http-route file based on the file `http-route.yaml.te
 To run the server you need to execute, but you need to be in the root folder:
 
 ```bash
-skaffold run --default-repo us-central1-docker.pkg.dev/<PROJECT_ID>/example-svc
+skaffold run --default-repo us-central1-docker.pkg.dev/<PROJECT_ID>/gateway-api
 ```
 
 To request the application, first we need to get the loadbalancer's IP:
