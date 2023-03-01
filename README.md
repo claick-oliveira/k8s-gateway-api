@@ -112,7 +112,7 @@ Let's create the gateway:
 kubectl apply  -f kubernetes/gateway.yaml
 ```
 
-Now you need to create the http-route file based on the file `http-route.yaml.template` and change the variable `<YOUR DOMAIN>`
+Now you need to create the http-route file based on the file `http-route.yaml.template` and change the variable `<YOUR DOMAIN>`.
 
 To run the server you need to execute, but you need to be in the root folder:
 
@@ -120,7 +120,23 @@ To run the server you need to execute, but you need to be in the root folder:
 skaffold run --default-repo us-central1-docker.pkg.dev/<PROJECT_ID>/example-svc
 ```
 
-#TODO: ## Add how to request the applicaton
+To request the application, first we need to get the loadbalancer's IP:
+
+```bash
+kubectl get gateway
+```
+
+Get the `ADDRESS`.With the IP we can request:
+
+```bash
+curl -H "host: <YOUR DOMAIN>" <YOUR IP>/health
+```
+
+The answer will be:
+
+```json
+{"status":"up"}
+```
 
 ### Application
 
