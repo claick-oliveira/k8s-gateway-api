@@ -27,6 +27,7 @@ These instructions will get you a copy of the project up and running on your loc
 - pip
 - virtualenv
 - vscode
+- terraform
 - skaffold
 - docker
 - minikube
@@ -104,6 +105,14 @@ Now change the name for staging:
 ```bash
 kubectx staging=<YOUR ENVIRONMENT>
 ```
+
+Let's create the gateway:
+
+```bash
+kubectl apply  -f kubernetes/gateway.yaml
+```
+
+Now you need to create the http-route file based on the file `http-route.yaml.template` and change the variable `<YOUR DOMAIN>`
 
 To run the server you need to execute, but you need to be in the root folder:
 

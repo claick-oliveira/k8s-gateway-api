@@ -1,0 +1,17 @@
+kind: HTTPRoute
+apiVersion: gateway.networking.k8s.io/v1beta1
+metadata:
+  name: example-svc
+spec:
+  parentRefs:
+  - kind: Gateway
+    name: global-external-http
+  hostnames:
+  - "<YOUR DOMAIN>"
+  rules:
+  # - matches:
+  #   - path:
+  #       value: /health
+  - backendRefs:
+    - name: example-svc
+      port: 5000

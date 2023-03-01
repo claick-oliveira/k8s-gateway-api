@@ -44,6 +44,6 @@ module "gke" {
 
 module "artifactregistry" {
   source        = "./modules/artifactregistry"
-  repository_id = "custom-metrics"
+  repository_id = "gateway-api"
   gcp_region    = var.gcp_region
 }
