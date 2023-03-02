@@ -1,4 +1,4 @@
-# k8s-gateway-api example
+# k8s-gateway-api
 
 This repository is an example to use gateway api in GKE. If you want yo read more about it:
 
