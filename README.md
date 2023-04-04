@@ -1,5 +1,7 @@
 # k8s-gateway-api
 
+[![CodeQL](https://github.com/claick-oliveira/k8s-gateway-api/actions/workflows/codeql.yml/badge.svg?branch=main)](https://github.com/claick-oliveira/k8s-gateway-api/actions/workflows/codeql.yml) [![](https://github.com/jpoehnelt/in-solidarity-bot/raw/main/static//badge-flat.png)](https://github.com/apps/in-solidarity)
+
 This repository is an example to use gateway api in GKE. If you want yo read more about it:
 
 - [Kubernetes Gateway API](https://gateway-api.sigs.k8s.io/).
