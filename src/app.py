@@ -28,6 +28,27 @@ def get_health():
     ), 200)
 
 
+@app.route('/', methods=['GET'])
+def get_home():
+    '''
+    This function returns the service's name . The method
+    allowed is GET
+
+    Path:
+    /health
+
+    Returns:
+    {
+      "name": 'example-svc'
+    }
+    '''
+    return make_response(jsonify(
+      {
+        'name': 'example-svc'
+      }
+    ), 200)
+
+
 @app.errorhandler(404)
 def not_found(error):
     '''

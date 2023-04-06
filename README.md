@@ -105,7 +105,7 @@ kubectx
 Now change the name for staging:
 
 ```bash
-kubectx staging=<YOUR ENVIRONMENT>
+kubectx gateway-api=<YOUR ENVIRONMENT>
 ```
 
 Let's create the gateway:
