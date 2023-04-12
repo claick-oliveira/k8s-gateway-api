@@ -41,6 +41,11 @@ gcloud container clusters create-auto gateway-api \
     --cluster-secondary-range-name=pods-range \
     --services-secondary-range-name=service-range
 
+gcloud container clusters upgrade CLUSTER_NAME --region=COMPUTE_REGION\
+    --master \
+    --release-channel=RELEASE_CHANNEL \
+    --cluster-version=VERSION
+
 gcloud container clusters get-credentials gke-gateway-api --region us-central1 --project <PROJECT_ID>
 kubectx staging=gke_<PROJECT_ID>_us-central1_gateway-api
 
