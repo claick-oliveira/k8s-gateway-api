@@ -18,7 +18,7 @@
 #       range.
 #
 
-bind = '0.0.0.0:5000'
+bind = '0.0.0.0:5002'
 backlog = 2048
 
 #
@@ -163,7 +163,7 @@ access_log_format = (
 #       A string or None to choose a default of something like 'gunicorn'.
 #
 
-proc_name = 'example-svc'
+proc_name = 'green'
 
 #
 # Server hooks

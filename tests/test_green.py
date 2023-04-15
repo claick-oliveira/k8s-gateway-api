@@ -1,8 +1,8 @@
-from src.app import app
+from microservices.green.src.app import app
 import json
 
 
-class TestTransactions():
+class TestPaths():
     def test_health(self):
         '''
         This function does a GET on the path /health and
@@ -29,7 +29,7 @@ class TestTransactions():
 
         Test:
           assert response.status_code == 200
-          assert data['name'] == 'example-svc'
+          assert data['name'] == 'green'
         '''
         response = app.test_client().get(
             '/',
@@ -39,4 +39,4 @@ class TestTransactions():
         data = json.loads(response.get_data(as_text=True))
 
         assert response.status_code == 200
-        assert data['name'] == 'example-svc'
+        assert data['name'] == 'green'

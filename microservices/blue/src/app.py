@@ -39,12 +39,12 @@ def get_home():
 
     Returns:
     {
-      "name": 'example-svc'
+      "name": 'blue'
     }
     '''
     return make_response(jsonify(
       {
-        'name': 'example-svc'
+        'name': 'blue'
       }
     ), 200)
 
@@ -82,4 +82,4 @@ def not_allowed(error):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5001)

@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: example-svc
+  name: green
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: example-svc
+      app: green
   template:
     metadata:
       labels:
-        app: example-svc
+        app: green
     spec:
       containers:
-      - name: server
-        image: example-svc
+      - name: green
+        image: green
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 5000
+        - containerPort: 5002
           protocol: TCP
         resources:
           requests:
