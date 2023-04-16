@@ -8,6 +8,7 @@ build:
     sha256: {}
 manifests:
   rawYaml:
+    - ../../kubernetes/namespace-blue.yaml
     - ../../kubernetes/deployment-blue.yaml
     - ../../kubernetes/service-blue.yaml
 deploy:
@@ -25,8 +26,20 @@ profiles:
     - image: blue
       docker:
         dockerfile: Dockerfile
+  portForward:
+  - resourceType: deployment
+    resourceName: blue
+    namespace: blue
+    port: 5001
+    localPort: 5001
+  - resourceType: service
+    resourceName: blue
+    namespace: blue
+    port: 8081
+    localPort: 8081
   manifests:
     rawYaml:
+      - ../../kubernetes/namespace-blue.yaml
       - ../../kubernetes/deployment-blue.yaml
       - ../../kubernetes/service-blue.yaml
   deploy:
@@ -41,6 +54,7 @@ profiles:
         dockerfile: Dockerfile
   manifests:
     rawYaml:
+      - ../../kubernetes/namespace-blue.yaml
       - ../../kubernetes/deployment-blue.yaml
       - ../../kubernetes/service-blue.yaml
   deploy:

@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: green
+  namespace: green
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: green
@@ -17,7 +18,8 @@ spec:
         image: green
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 5002
+        - name: http
+          containerPort: 5002
           protocol: TCP
         resources:
           requests:
@@ -26,3 +28,20 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: UUID
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.uid

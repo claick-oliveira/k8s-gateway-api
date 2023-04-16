@@ -2,6 +2,7 @@ from flask import (
     Flask, jsonify, make_response
 )
 from flask_cors import CORS
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -44,7 +45,11 @@ def get_home():
     '''
     return make_response(jsonify(
       {
-        'name': 'blue'
+        'name': 'blue',
+        'pod': os.environ['POD_NAME'],
+        'namespace': os.environ['POD_NAMESPACE'],
+        'ip': os.environ['POD_IP'],
+        'uuid': os.environ['UUID']
       }
     ), 200)
 

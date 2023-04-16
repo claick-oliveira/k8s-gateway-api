@@ -8,6 +8,7 @@ build:
     sha256: {}
 manifests:
   rawYaml:
+    - ../../kubernetes/namespace-green.yaml
     - ../../kubernetes/deployment-green.yaml
     - ../../kubernetes/service-green.yaml
 deploy:
@@ -25,8 +26,20 @@ profiles:
     - image: green
       docker:
         dockerfile: Dockerfile
+  portForward:
+  - resourceType: deployment
+    resourceName: green
+    namespace: green
+    port: 5002
+    localPort: 5002
+  - resourceType: service
+    resourceName: green
+    namespace: green
+    port: 8082
+    localPort: 8082
   manifests:
     rawYaml:
+      - ../../kubernetes/namespace-green.yaml
       - ../../kubernetes/deployment-green.yaml
       - ../../kubernetes/service-green.yaml
   deploy:
@@ -41,6 +54,7 @@ profiles:
         dockerfile: Dockerfile
   manifests:
     rawYaml:
+      - ../../kubernetes/namespace-green.yaml
       - ../../kubernetes/deployment-green.yaml
       - ../../kubernetes/service-green.yaml
   deploy:
