@@ -13,9 +13,9 @@ test:
       - command: tox -- microservices/green/tests/test_green.py
 manifests:
   rawYaml:
-    - ../../kubernetes/namespace-green.yaml
-    - ../../kubernetes/deployment-green.yaml
-    - ../../kubernetes/service-green.yaml
+    - ../../kubernetes/green/namespace.yaml
+    - ../../kubernetes/green/deployment.yaml
+    - ../../kubernetes/green/service.yaml
 deploy:
   kubectl: {}
 profiles:
@@ -43,9 +43,9 @@ profiles:
     localPort: 8082
   manifests:
     rawYaml:
-      - ../../kubernetes/namespace-green.yaml
-      - ../../kubernetes/deployment-green.yaml
-      - ../../kubernetes/service-green.yaml
+      - ../../kubernetes/green/namespace.yaml
+      - ../../kubernetes/green/deployment.yaml
+      - ../../kubernetes/green/service.yaml
   deploy:
     kubectl: {}
 - name: staging-profile
@@ -58,8 +58,8 @@ profiles:
         dockerfile: Dockerfile
   manifests:
     rawYaml:
-      - ../../kubernetes/namespace-green.yaml
-      - ../../kubernetes/deployment-green.yaml
-      - ../../kubernetes/service-green.yaml
+      - ../../kubernetes/green/namespace.yaml
+      - ../../kubernetes/green/deployment.yaml
+      - ../../kubernetes/green/service.yaml
   deploy:
     kubectl: {}

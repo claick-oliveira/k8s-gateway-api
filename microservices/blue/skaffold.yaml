@@ -13,9 +13,9 @@ test:
       - command: tox -- microservices/blue/tests/test_blue.py
 manifests:
   rawYaml:
-    - ../../kubernetes/namespace-blue.yaml
-    - ../../kubernetes/deployment-blue.yaml
-    - ../../kubernetes/service-blue.yaml
+    - ../../kubernetes/blue/namespace.yaml
+    - ../../kubernetes/blue/deployment.yaml
+    - ../../kubernetes/blue/service.yaml
 deploy:
   kubectl: {}
 profiles:
@@ -43,9 +43,9 @@ profiles:
     localPort: 8081
   manifests:
     rawYaml:
-      - ../../kubernetes/namespace-blue.yaml
-      - ../../kubernetes/deployment-blue.yaml
-      - ../../kubernetes/service-blue.yaml
+      - ../../kubernetes/blue/namespace.yaml
+      - ../../kubernetes/blue/deployment.yaml
+      - ../../kubernetes/blue/service.yaml
   deploy:
     kubectl: {}
 - name: staging-profile
@@ -58,8 +58,8 @@ profiles:
         dockerfile: Dockerfile
   manifests:
     rawYaml:
-      - ../../kubernetes/namespace-blue.yaml
-      - ../../kubernetes/deployment-blue.yaml
-      - ../../kubernetes/service-blue.yaml
+      - ../../kubernetes/blue/namespace.yaml
+      - ../../kubernetes/blue/deployment.yaml
+      - ../../kubernetes/blue/service.yaml
   deploy:
     kubectl: {}
