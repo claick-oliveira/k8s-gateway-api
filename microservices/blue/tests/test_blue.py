@@ -1,4 +1,4 @@
-from microservices.green.src.app import app
+from microservices.blue.src.app import app
 import json
 
 
@@ -29,7 +29,11 @@ class TestPaths():
 
         Test:
           assert response.status_code == 200
-          assert data['name'] == 'green'
+          assert data['name'] == 'blue'
+          assert data['pod'] == 'blue'
+          assert data['namespace'] == 'blue'
+          assert data['ip'] == '0.0.0.0'
+          assert data['uuid'] == '7d226e7d-3c97'
         '''
         response = app.test_client().get(
             '/',
@@ -39,4 +43,8 @@ class TestPaths():
         data = json.loads(response.get_data(as_text=True))
 
         assert response.status_code == 200
-        assert data['name'] == 'green'
+        assert data['name'] == 'blue'
+        assert data['pod'] == 'blue'
+        assert data['namespace'] == 'blue'
+        assert data['ip'] == '0.0.0.0'
+        assert data['uuid'] == '7d226e7d-3c97'

@@ -46,10 +46,10 @@ def get_home():
     return make_response(jsonify(
       {
         'name': 'green',
-        'pod': os.environ['POD_NAME'],
-        'namespace': os.environ['POD_NAMESPACE'],
-        'ip': os.environ['POD_IP'],
-        'uuid': os.environ['UUID']
+        'pod': os.getenv('POD_NAME', 'green'),
+        'namespace': os.getenv('POD_NAMESPACE', 'green'),
+        'ip': os.getenv('POD_IP', '0.0.0.0'),
+        'uuid': os.getenv('UUID', '7a7f9c68-535b')
       }
     ), 200)
 
