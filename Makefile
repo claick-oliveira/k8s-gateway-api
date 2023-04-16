@@ -48,16 +48,13 @@ requirementsdev:
 	@ echo "Updating pip packages:"
 	@ pip install -r "requirements_dev.txt"
 
-server:
-	@ gunicorn --bind 0.0.0.0:5000 --chdir src wsgi:app
-
 cleanfull:
 	@ echo "Cleaning old files..."
 	@ rm -rf .pytest_cache
 	@ rm -rf .tox
 	@ rm -rf dist
 	@ rm -rf build
-	@ rm -rf */__pycache__
+	@ rm -rf ./**/**/__pycache__
 	@ rm -rf *.egg-info
 	@ rm -rf .coverage*
 	@ rm -rf **/*.pyc
@@ -70,7 +67,7 @@ clean:
 	@ rm -rf .tox
 	@ rm -rf dist
 	@ rm -rf build
-	@ rm -rf */__pycache__
+	@ rm -rf ./**/**/__pycache__
 	@ rm -rf *.egg-info
 	@ rm -rf .coverage*
 	@ rm -rf **/*.pyc
@@ -78,10 +75,3 @@ clean:
 
 test:
 	@ tox
-
-package:
-	@ python setup.py sdist
-	@ echo "Your package is in the dist directory."
-
-upload pypi:
-	@ python setup.py sdist upload
